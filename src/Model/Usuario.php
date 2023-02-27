@@ -40,23 +40,9 @@ class Usuario
             return [false, 'E-mail ou senha inválida'];
         }
 
-        /*$_SESSION['possui_endereco']     = $usuario['cep'] !== null ? 'S' : 'N';
-        $_SESSION['possui_localizacao']  = $usuario['cep'] !== null && $usuario['latitude'] !== null && $usuario['longitude'] !== null && floatval($usuario['latitude']) !== floatval(0) && floatval($usuario['longitude']) !== floatval(0) ? 'S' : 'N';
-        $_SESSION['usuario_logado']      = true;
-        $_SESSION['id_usuario']          = $usuario['id'];
-        $_SESSION['nome_usuario']        = $usuario['nome'];
-        $_SESSION['ultima_notificacao']  = 0;
-        $_SESSION['plataforma_favorita'] = $usuario['id_plataforma'];
-        $_SESSION['genero_favorito']     = $usuario['id_genero'];
-        $_SESSION['ultima_avaliacao']    = 0;
-        $_SESSION['verifica_chat']       = true;
-        $_SESSION['verifica_avaliacao']  = false;
-
-        if (isset($_SESSION['tentativa_acao']) && intval($_SESSION['tentativa_usuario_produto']) === intval($usuario['id'])) {
-            unset($_SESSION['tentativa_acao']);
-            unset($_SESSION['tentativa_produto']);
-            unset($_SESSION['tentativa_usuario_produto']);
-        }*/
+        $_SESSION['usuario_logado'] = true;
+        $_SESSION['id_usuario']     = $usuario['id'];
+        $_SESSION['nome_usuario']   = $usuario['nome'];
 
         UsuarioDAO::gravarDataUltimoAcesso($usuario['id']);
         return [true, ''];
