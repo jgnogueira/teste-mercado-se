@@ -3,7 +3,7 @@
 
 <head>
    <?php require_once '_head.php' ?>
-   <title>Mercado SoftExpert - Login</title>
+   <title>Mercado SoftExpert - Cadastro</title>
 </head>
 
 <body>
@@ -14,7 +14,7 @@
             <div class="col-lg-12 col-md-12">
                <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="/minha-conta"><i class="icofont icofont-ui-home"></i> Home</a></li>
-                  <li class="breadcrumb-item active">Login</li>
+                  <li class="breadcrumb-item active">Cadastro</li>
                </ol>
             </div>
          </div>
@@ -29,9 +29,16 @@
                      <!-- Tab panes -->
                      <div class="tab-content">
                         <form>
-                           <input type="hidden" id="apos-login" value="<?= $aposLogin ?>">
-                           <div class="tab-pane active" id="login" role="tabpanel">
-                              <h5 class="heading-design-h5">Entre em sua conta</h5>
+                           <div class="tab-pane active" id="register" role="tabpanel">
+                              <h5 class="heading-design-h5">Cadastre-se agora</h5>
+                              <fieldset class="form-group position-relative">
+                                 <label for="nome">Nome</label>
+                                 <input type="text" class="form-control" id="nome" name="nome" placeholder="João da Silva" title="Preencha este campo">
+                                 <span style="position: absolute; right: 10px; top: 38px;" class="icofont" id="icone-feedback-nome"></span>
+                                 <div class="invalid-feedback" id="feedback-nome" style="font-size: 12px;">
+
+                                 </div>
+                              </fieldset>
                               <fieldset class="form-group position-relative">
                                  <label for="email">E-mail</label>
                                  <input type="email" class="form-control" id="email" name="email" placeholder="usuario@mercadosoftexpert.com.br" title="Preencha este campo">
@@ -48,8 +55,16 @@
 
                                  </div>
                               </fieldset>
+                              <fieldset class="form-group position-relative">
+                                 <label for="confirmaSenha">Confirmar Senha</label>
+                                 <input type="password" class="form-control" id="confirmar-senha" placeholder="********" title="Preencha este campo">
+                                 <span style="position: absolute; right: 10px; top: 38px;" class="icofont" id="icone-feedback-confirmar-senha"></span>
+                                 <div class="invalid-feedback" id="feedback-confirmar-senha" style="font-size: 12px;">
+
+                                 </div>
+                              </fieldset>
                               <fieldset class="form-group">
-                                 <button type="button" class="btn btn-lg btn-theme-round btn-block" id="btn-login" style="cursor: pointer;">Entrar</button>
+                                 <button type="button" class="btn btn-lg btn-theme-round btn-block" id="btn-criar-conta" style="cursor: pointer;">Criar Minha Conta</button>
                               </fieldset>
                            </div>
                         </form>
@@ -58,10 +73,10 @@
                      <div class="text-center login-footer-tab">
                         <ul class="nav nav-tabs" role="tablist">
                            <li class="nav-item">
-                              <a class="nav-link active"><i class="icofont icofont-login"></i> LOGIN</a>
+                              <a class="nav-link" href="/login"><i class="icofont icofont-login"></i> LOGIN</a>
                            </li>
                            <li class="nav-item">
-                              <a class="nav-link" href="/cadastro"><i class="icofont icofont-pencil-alt-5"></i> CADASTRO</a>
+                              <a class="nav-link active"><i class="icofont icofont-pencil-alt-5"></i> CADASTRO</a>
                            </li>
                         </ul>
                      </div>
@@ -76,7 +91,7 @@
       <?php require_once '_footer.php' ?>
    </footer>
    <?php require_once '_scripts.php' ?>
-   <script src="assets/js/login.js"></script>
+   <script src="assets/js/cadastro.js"></script>
 </body>
 
 </html>
