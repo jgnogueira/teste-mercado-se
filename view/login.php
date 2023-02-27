@@ -3,7 +3,7 @@
 
 <head>
    <?php require_once '_head.php' ?>
-   <title>GamePass - Login</title>
+   <title>Mercado SoftExpert - Login</title>
 </head>
 
 <body>
@@ -30,14 +30,11 @@
                      <div class="tab-content">
                         <form>
                            <input type="hidden" id="apos-login" value="<?= $aposLogin ?>">
-                           <?php if ($possuiToken) { ?>
-                              <input type="hidden" id="token-validacao-email" value="<?= $tokenValido ?>">
-                           <?php } ?>
                            <div class="tab-pane active" id="login" role="tabpanel">
                               <h5 class="heading-design-h5">Entre em sua conta</h5>
                               <fieldset class="form-group position-relative">
                                  <label for="email">E-mail</label>
-                                 <input type="email" class="form-control" id="email" name="email" placeholder="usuario@gamepass.com.br" title="Preencha este campo" value="<?= $email ?>">
+                                 <input type="email" class="form-control" id="email" name="email" placeholder="usuario@mercadosoftexpert.com.br" title="Preencha este campo">
                                  <span style="position: absolute; right: 10px; top: 38px;" class="icofont" id="icone-feedback-email"></span>
                                  <div class="invalid-feedback" id="feedback-email" style="font-size: 12px;">
 

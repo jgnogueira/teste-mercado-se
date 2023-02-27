@@ -3,7 +3,7 @@
 
 <head>
    <?php require_once '_head.php' ?>
-   <title>GamePass - 404</title>
+   <title>Mercado SoftExpert - 404</title>
 </head>
 
 <body class="error-page-main">

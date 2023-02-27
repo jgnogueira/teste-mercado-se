@@ -1,7 +1,6 @@
-<a class="btn btn-info btn-lg" id="link-ajuda" style="position: fixed; bottom: 30px; right: 30px; z-index: 1; border-radius: 50px;" target="_blank" rel="noopener noreferrer"><i class="icofont icofont-question"></i></a>
 <nav class="navbar navbar-light navbar-expand-lg bg-faded osahan-menu osahan-menu-top-4">
     <div class="container">
-        <a class="navbar-brand" href="/lista-de-produtos"> <span class="text-primary">GAME</span><span class="text-danger">PASS</span> </a>
+        <a class="navbar-brand" href="/lista-de-produtos"> <span class="text-info">Mercado</span> <span class="text-danger">Soft</span><span class="text-primary">Expert</span> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -10,7 +9,7 @@
                 <div class="top-categories-search" id="div-pesquisa">
                     <form method="GET" action="/lista-de-produtos" id="form-pesquisa">
                         <div class="input-group">
-                            <input class="form-control" id="pesquisa" placeholder="Pesquisar jogos, plataformas, desenvolvedoras, gêneros..." aria-label="Pesquisar jogos, plataformas, desenvolvedoras, gêneros..." type="text" title="Pesquisar jogos, plataformas, desenvolvedoras, gêneros..." name="pesquisa">
+                            <input class="form-control" id="pesquisa" placeholder="Pesquisar produtos" aria-label="Pesquisar produtos" type="text" title="Pesquisar produtos" name="pesquisa">
                             <span class="input-group-btn">
                                 <button class="btn btn-primary" id="btn-pesquisar" type="button" style="cursor: pointer;"><i class="icofont icofont-search-alt-2"></i> Pesquisar</button>
                             </span>
