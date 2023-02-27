@@ -13,7 +13,7 @@
          <div class="row">
             <div class="col-lg-12 col-md-12">
                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="/minha-conta"><i class="icofont icofont-ui-home"></i> Home</a></li>
+                  <li class="breadcrumb-item"><a href="/lista-de-produtos"><i class="icofont icofont-ui-home"></i> Home</a></li>
                   <li class="breadcrumb-item active">Cadastro</li>
                </ol>
             </div>
