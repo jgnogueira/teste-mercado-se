@@ -1,29 +1,16 @@
 $('#btn-criar-conta').on('click', function () {
     var nomeValido           = validarNome();
-    var cpfValido            = validarCpf();
     var emailValido          = validarEmail();
-    var celularValido        = validarCelular();
     var senhaValida          = validarSenha();
     var confirmarSenhaValida = validarConfirmarSenha();
-    //var termosDeUsoValido    = validarTermosDeUso();
 
     if (!nomeValido) {
         $('#nome').focus();
         return false;
     }
 
-    if (!cpfValido) {
-        $('#cpf').focus();
-        return false;
-    }
-
     if (!emailValido) {
         $('#email').focus();
-        return false;
-    }
-
-    if (!celularValido) {
-        $('#celular').focus();
         return false;
     }
 
@@ -37,19 +24,10 @@ $('#btn-criar-conta').on('click', function () {
         return false;
     }
 
-    /*if (!termosDeUsoValido) {
-        $('#termos-de-uso').focus();
-        return false;
-    }*/
-
     var data = {
         nome: $('#nome').val(),
         email: $('#email').val(),
-        senha: $('#senha').val(),
-        celular: $('#celular').val(),
-        cpf: $('#cpf').val(),
-        genero: $('#genero').val(),
-        plataforma: $('#plataforma').val()
+        senha: $('#senha').val()
     }
 
     Swal.fire({
@@ -69,7 +47,6 @@ $('#btn-criar-conta').on('click', function () {
                     Swal.fire({
                         icon: 'success',
                         title: 'CONTA CRIADA COM SUCESSO!',
-                        footer: 'Enviamos para você um e-mail contendo instruções para efetivar seu registro!',
                         width: 600,
                         allowOutsideClick: false,
                         showCancelButton: false
@@ -115,16 +92,8 @@ $('#nome').on('blur', function () {
     validarNome();
 });
 
-$('#cpf').on('blur', function () {
-    validarCpf();
-});
-
 $('#email').on('blur', function () {
     validarEmail();
-});
-
-$('#celular').on('blur', function () {
-    validarCelular();
 });
 
 $('#senha').on('blur', function () {
@@ -133,10 +102,6 @@ $('#senha').on('blur', function () {
 
 $('#confirmar-senha').on('blur', function () {
     validarConfirmarSenha();
-});
-
-$('#termos-de-uso').change(function () {
-    validarTermosDeUso();
 });
 
 function validarNome() {
@@ -182,91 +147,6 @@ function validarNome() {
     return true;
 }
 
-function validarCpf() {
-    $('#cpf').removeClass('is-invalid');
-    $('#cpf').removeClass('is-valid');
-    $('#icone-feedback-cpf').removeClass('icofont-exclamation-circle');
-    $('#icone-feedback-cpf').removeClass('text-danger');
-    $('#icone-feedback-cpf').removeClass('icofont-verification-check');
-    $('#icone-feedback-cpf').removeClass('text-success');
-
-    var cpfUsuario = $('#cpf').val();
-    var cpfUsuario = cpfUsuario.toString();
-    var cpfUsuario = cpfUsuario.trim();
-
-    if (cpfUsuario === null || cpfUsuario === '') {
-        $('#cpf').addClass('is-invalid');
-        $('#feedback-cpf').html('CPF deve ser informado');
-        $('#icone-feedback-cpf').addClass('icofont-exclamation-circle');
-        $('#icone-feedback-cpf').addClass('text-danger');
-        return false;
-    }
-
-    var cpfUsuario = cpfUsuario.replace(/\./g, '');
-    var cpfUsuario = cpfUsuario.replace('-', '');
-    var cpfUsuario = cpfUsuario.split('');
-
-    var v1 = 0;
-    var v2 = 0;
-    var aux = false;
-
-    for (var i = 1; cpfUsuario.length > i; i++) {
-        if (cpfUsuario[i - 1] != cpfUsuario[i]) {
-            aux = true;
-        }
-    }
-
-    if (aux == false) {
-        $('#cpf').addClass('is-invalid');
-        $('#feedback-cpf').html('CPF inválido');
-        $('#icone-feedback-cpf').addClass('icofont-exclamation-circle');
-        $('#icone-feedback-cpf').addClass('text-danger');
-        return false;
-    }
-
-    for (var i = 0, p = 10; (cpfUsuario.length - 2) > i; i++, p--) {
-        v1 += cpfUsuario[i] * p;
-    }
-
-    v1 = ((v1 * 10) % 11);
-
-    if (v1 == 10) {
-        v1 = 0;
-    }
-
-    if (v1 != cpfUsuario[9]) {
-        $('#cpf').addClass('is-invalid');
-        $('#feedback-cpf').html('CPF inválido');
-        $('#icone-feedback-cpf').addClass('icofont-exclamation-circle');
-        $('#icone-feedback-cpf').addClass('text-danger');
-        return false;
-    }
-
-    for (var i = 0, p = 11; (cpfUsuario.length - 1) > i; i++, p--) {
-        v2 += cpfUsuario[i] * p;
-    }
-
-    v2 = ((v2 * 10) % 11);
-
-    if (v2 == 10) {
-        v2 = 0;
-    }
-
-    if (v2 != cpfUsuario[10]) {
-        $('#cpf').addClass('is-invalid');
-        $('#feedback-cpf').html('CPF inválido');
-        $('#icone-feedback-cpf').addClass('icofont-exclamation-circle');
-        $('#icone-feedback-cpf').addClass('text-danger');
-        return false;
-    }
-
-    $('#cpf').addClass('is-valid');
-    $('#icone-feedback-cpf').addClass('icofont-verification-check');
-    $('#icone-feedback-cpf').addClass('text-success');
-    $('#feedback-cpf').html('');
-    return true;
-}
-
 function validarEmail() {
     $('#email').removeClass('is-invalid');
     $('#email').removeClass('is-valid');
@@ -301,43 +181,6 @@ function validarEmail() {
     $('#feedback-email').html('');
     $('#icone-feedback-email').addClass('icofont-verification-check');
     $('#icone-feedback-email').addClass('text-success');
-    return true;
-}
-
-function validarCelular() {
-    $('#celular').removeClass('is-invalid');
-    $('#celular').removeClass('is-valid');
-    $('#icone-feedback-celular').removeClass('icofont-exclamation-circle');
-    $('#icone-feedback-celular').removeClass('text-danger');
-    $('#icone-feedback-celular').removeClass('icofont-verification-check');
-    $('#icone-feedback-celular').removeClass('text-success');
-
-    var celularUsuario = $('#celular').val();
-    var celularUsuario = celularUsuario.toString();
-    var celularUsuario = celularUsuario.trim();
-
-    if (celularUsuario === null || celularUsuario === '') {
-        $('#celular').addClass('is-invalid');
-        $('#feedback-celular').html('Celular deve ser informado');
-        $('#icone-feedback-celular').addClass('icofont-exclamation-circle');
-        $('#icone-feedback-celular').addClass('text-danger');
-        return false;
-    }
-
-    var expressaoRegular = /^\(\d{2}\) \d{4,5}-\d{4}$/gi;
-
-    if (!expressaoRegular.test(celularUsuario)) {
-        $('#celular').addClass('is-invalid');
-        $('#feedback-celular').html('Celular inválido');
-        $('#icone-feedback-celular').addClass('icofont-exclamation-circle');
-        $('#icone-feedback-celular').addClass('text-danger');
-        return false;
-    }
-
-    $('#celular').addClass('is-valid');
-    $('#feedback-celular').html('');
-    $('#icone-feedback-celular').addClass('icofont-verification-check');
-    $('#icone-feedback-celular').addClass('text-success');
     return true;
 }
 
@@ -422,17 +265,5 @@ function validarConfirmarSenha() {
     $('#feedback-confirmar-senha').html('');
     $('#icone-feedback-confirmar-senha').addClass('icofont-verification-check');
     $('#icone-feedback-confirmar-senha').addClass('text-success');
-    return true;
-}
-
-function validarTermosDeUso() {
-    if (!$('#termos-de-uso').is(':checked')) {
-        $('#termos-de-uso').removeClass('is-valid');
-        $('#feedback-termos-de-uso').html('Você deve concordar com os termos de uso');
-        return false;
-    }
-
-    $('#termos-de-uso').addClass('is-valid');
-    $('#feedback-termos-de-uso').html('');
     return true;
 }
