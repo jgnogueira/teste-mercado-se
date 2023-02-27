@@ -43,6 +43,7 @@ class Usuario
         $_SESSION['usuario_logado'] = true;
         $_SESSION['id_usuario']     = $usuario['id'];
         $_SESSION['nome_usuario']   = $usuario['nome'];
+        $_SESSION['usuario_administrador'] = $usuario['administrador'];
 
         UsuarioDAO::gravarDataUltimoAcesso($usuario['id']);
         return [true, ''];

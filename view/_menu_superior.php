@@ -25,13 +25,12 @@
                                 <strong>Olá, </strong> <?= $_SESSION['nome_usuario'] ?>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-list-design">
-                                <a class="dropdown-item" href="/minha-conta"><i class="icofont icofont-ui-user"></i> Minha Conta</a>
-                                <a class="dropdown-item" href="/meu-endereco"><i class="icofont icofont-location-pin"></i> Meu Endereço</a>
-                                <a class="dropdown-item" href="/lista-de-desejos"><i class="icofont icofont-heart-alt"></i> Lista de Desejos</a>
-                                <a class="dropdown-item" href="/negociacoes-finalizadas"><i class="fa fa-check-square-o"></i> Negociações Finalizadas</a>
-                                <a class="dropdown-item" href="/negociacoes-abertas"><i class="fa fa-handshake-o"></i> Negociações Abertas</a>
-                                <a class="dropdown-item" href="/meus-produtos"><i class="icofont icofont-game"></i> Meus Produtos</a>
-                                <a class="dropdown-item" href="/novo-produto"><i class="icofont icofont-ui-add"></i> Novo Produto</a>
+                                <?php if (isset($_SESSION['usuario_administrador']) && $_SESSION['usuario_administrador']) { ?>
+                                    <a class="dropdown-item" href="/minha-conta"><i class="icofont icofont-edit"></i> Cadastrar Produto</a>
+                                    <a class="dropdown-item" href="/meu-endereco"><i class="icofont icofont-bar-code"></i> Cadastrar Tipo de Produto</a>
+                                    <a class="dropdown-item" href="/lista-de-desejos"><i class="icofont icofont-bars"></i> Cadastrar Imposto para Tipo de Produto</a>
+                                <?php } ?>
+                                <a class="dropdown-item" href="/negociacoes-finalizadas"><i class="icofont icofont-shopping-cart"></i> Carrinho</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/logout"><i class="icofont icofont-logout"></i> Sair</a>
                             </div>
