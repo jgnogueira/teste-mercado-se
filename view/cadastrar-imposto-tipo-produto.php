@@ -3,7 +3,7 @@
 
 <head>
     <?php require_once '_head.php' ?>
-    <title>Mercado SoftExpert - Novo Produto</title>
+    <title>Mercado SoftExpert - Cadastrar Imposto para Tipo de Produto</title>
 </head>
 
 <body>

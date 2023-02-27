@@ -26,11 +26,11 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-list-design">
                                 <?php if (isset($_SESSION['usuario_administrador']) && $_SESSION['usuario_administrador']) { ?>
-                                    <a class="dropdown-item" href="/minha-conta"><i class="icofont icofont-edit"></i> Cadastrar Produto</a>
-                                    <a class="dropdown-item" href="/meu-endereco"><i class="icofont icofont-bar-code"></i> Cadastrar Tipo de Produto</a>
-                                    <a class="dropdown-item" href="/lista-de-desejos"><i class="icofont icofont-bars"></i> Cadastrar Imposto para Tipo de Produto</a>
+                                    <a class="dropdown-item" href="/cadastrar-produto"><i class="icofont icofont-edit"></i> Cadastrar Produto</a>
+                                    <a class="dropdown-item" href="/cadastrar-tipo-produto"><i class="icofont icofont-bar-code"></i> Cadastrar Tipo de Produto</a>
+                                    <a class="dropdown-item" href="/cadastrar-imposto-tipo-produto"><i class="icofont icofont-bars"></i> Cadastrar Imposto para Tipo de Produto</a>
                                 <?php } ?>
-                                <a class="dropdown-item" href="/negociacoes-finalizadas"><i class="icofont icofont-shopping-cart"></i> Carrinho</a>
+                                <a class="dropdown-item" href="/carrinho"><i class="icofont icofont-shopping-cart"></i> Carrinho</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/logout"><i class="icofont icofont-logout"></i> Sair</a>
                             </div>

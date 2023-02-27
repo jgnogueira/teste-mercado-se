@@ -4,6 +4,22 @@
 <head>
    <?php require_once '_head.php' ?>
    <title>Mercado SoftExpert - Login</title>
+   <style>
+      html {
+            height: 100%;
+            min-height: 100%;
+      }
+
+      body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+      }
+
+      footer {
+            margin-top: auto;
+      }
+   </style>
 </head>
 
 <body>
