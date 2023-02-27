@@ -40,11 +40,7 @@ class Usuario
             return [false, 'E-mail ou senha inválida'];
         }
 
-        if ($usuario['email_verificado'] !== 'S') {
-            return [false, 'E-mail ainda não verificado'];
-        }
-
-        $_SESSION['possui_endereco']     = $usuario['cep'] !== null ? 'S' : 'N';
+        /*$_SESSION['possui_endereco']     = $usuario['cep'] !== null ? 'S' : 'N';
         $_SESSION['possui_localizacao']  = $usuario['cep'] !== null && $usuario['latitude'] !== null && $usuario['longitude'] !== null && floatval($usuario['latitude']) !== floatval(0) && floatval($usuario['longitude']) !== floatval(0) ? 'S' : 'N';
         $_SESSION['usuario_logado']      = true;
         $_SESSION['id_usuario']          = $usuario['id'];
@@ -60,7 +56,7 @@ class Usuario
             unset($_SESSION['tentativa_acao']);
             unset($_SESSION['tentativa_produto']);
             unset($_SESSION['tentativa_usuario_produto']);
-        }
+        }*/
 
         UsuarioDAO::gravarDataUltimoAcesso($usuario['id']);
         return [true, ''];

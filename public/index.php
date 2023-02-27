@@ -11,8 +11,14 @@ if (array_key_exists($url, $rotas)) {
         $informacoesController = explode('@', $rotas[$url]);
         $classeController = $informacoesController[0];
         $metodoController = $informacoesController[1];
+        $metodoRequisicao = $informacoesController[2];
 
-        if (array_key_exists(2, $informacoesController)) {
+        if ($_SERVER['REQUEST_METHOD'] !== $metodoRequisicao) {
+            header('location: http://localhost:8080/404');
+            exit();
+        }
+
+        if (array_key_exists(3, $informacoesController)) {
             if (!isset($_SESSION['usuario_logado'])) {
                 header('location:  http://localhost:8080/login?apos-login=' . $url);
                 exit();

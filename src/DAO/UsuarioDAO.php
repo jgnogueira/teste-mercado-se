@@ -15,7 +15,7 @@ class UsuarioDAO
     public static function buscarInformacoesUsuario(string|int $valor, string $coluna = 'id') : array|bool
     {
         $conexao = ConexaoHelper::retornarConexao();
-        $query   = $conexao->prepare("SELECT * FROM tbusuarios WHERE UPPER($coluna) = UPPER(:valor) AND situacao = 'A'");
+        $query   = $conexao->prepare("SELECT * FROM tbusuarios WHERE UPPER($coluna) = UPPER(:valor)");
         $query->execute([':valor' => $valor]);
 
         return $query->fetch();
@@ -24,7 +24,7 @@ class UsuarioDAO
     public static function gravarDataUltimoAcesso(int $idUsuario) : void
     {
         $conexao = ConexaoHelper::retornarConexao();
-        $query   = $conexao->prepare("UPDATE tbusuarios SET data_ultimo_acesso = CURRENT_TIMESTAMP WHERE id = :id AND situacao = 'A'");
+        $query   = $conexao->prepare("UPDATE tbusuarios SET data_ultimo_acesso = CURRENT_TIMESTAMP WHERE id = :id");
 
         $query->execute([':id' => $idUsuario]);
     }
