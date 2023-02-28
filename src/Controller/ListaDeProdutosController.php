@@ -21,8 +21,7 @@ class ListaDeProdutosController
             $parametrosTipoProduto = null;
         }
 
-        //$produtos = self::verificarAvisoProduto(self::verificarNegociacaoProduto(self::verificarProdutoListaDeDesejos(Produto::buscarProdutosPorPesquisaLogado($parametroPesquisa, $colunaOrdenacao, $parametrosPlataformas, $parametrosDesenvolvedoras, $parametrosGeneros, $inicioPesquisa, $quantidadeDeProdutosPorPagina, $parametrosEstados, $parametrosNegociacoes))));
-        $produtos = [];
+        $produtos = Produto::buscarProdutosPorPesquisa($parametroPesquisa, $parametrosTipoProduto);
         $tipos    = self::gerarParametrosUrlTipos(TipoProduto::buscarTiposPorPesquisa($parametroPesquisa), $parametrosTipoProduto);
         
         echo RenderizadorDeHtmlHelper::renderizarHtml('lista-de-produtos',

@@ -81,7 +81,6 @@
                     </div>
                     <?php if (count($produtos) > 0) { ?>
                         <div class="row products_page_list">
-                            <input type="hidden" id="possui-endereco" value="<?= isset($_SESSION['usuario_logado']) ? $_SESSION['possui_endereco'] : 'N' ?>">
                             <div class="clearfix"></div>
                             <?php foreach ($produtos as $produto) { ?>
                                 <div class="col-lg-4 col-md-6">
@@ -89,79 +88,20 @@
                                         <div class="h-100">
                                             <div class="product-item">
                                                 <div>
-                                                    <?php if (isset($_SESSION['usuario_logado'])) { ?>
-                                                        <span class="like-icon <?= $produto['desejo'] === true ? 'text-danger' : '' ?>" id="icone-desejo-<?= $produto['id'] ?>"><i class="icofont icofont-heart-alt"></i></span>
-                                                    <?php } else { ?>
-                                                        <span class="like-icon"><i class="icofont icofont-heart-alt"></i></span>
-                                                    <?php } ?>
-                                                    <a href="/detalhes-do-produto?produto=<?= $produto['id'] ?>"><img class="card-img-top img-fluid" src="assets/images/produtos/<?= $produto['nome_imagem'] ?>" alt="<?= $produto['nome'] ?>"></a>
+                                                    <a href="#"><img class="card-img-top img-fluid" src="assets/images/produtos/<?= $produto['imagem'] ?>" alt="<?= $produto['nome'] ?>"></a>
                                                 </div>
                                                 <div class="product-item-body">
-                                                    <h4 class="card-title" style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"><a href="/detalhes-do-produto?produto=<?= $produto['id'] ?>"><?= $produto['nome'] ?></a></h4>
+                                                    <h4 class="card-title" style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"><?= $produto['nome'] ?></h4>
                                                     <h5>
                                                         <span class="product-price">R$ <?= number_format($produto['valor'], 2, ',', '.') ?></span>
                                                     </h5>
                                                     <p class="mt-3">
                                                         <?php if (isset($_SESSION['usuario_logado'])) { ?>
-                                                            <?php if ($produto['situacao'] === 'L' && intval($produto['id_usuario_locacao']) !== intval($_SESSION['id_usuario'])) { ?>
-                                                                <button class="btn btn-outline-primary btn-aviso" id="btn-aviso-<?= $produto['id'] ?>" style="cursor: <?= $produto['aviso'] === true ? 'not-allowed' : 'pointer' ?>;" data-id="<?= $produto['id'] ?>" <?= $produto['aviso'] === true ? 'disabled' : '' ?>><i class="icofont icofont-notification"></i> Avise-me Quando Disponível</button>
-                                                            <?php } else { ?>
-                                                                <button class="btn btn-outline-danger btn-desejo" <?= $produto['desejo'] === true || ($produto['negociacao'] === true && $produto['situacao'] === 'L') ? 'disabled' : '' ?> id="btn-desejo-<?= $produto['id'] ?>" style="cursor: <?= $produto['desejo'] === true || ($produto['negociacao'] === true && $produto['situacao'] === 'L') ? 'not-allowed' : 'pointer' ?>;" data-id="<?= $produto['id'] ?>"><i class="icofont icofont-heart-alt"></i> Desejo</button>
-                                                                <button class="btn btn-outline-success btn-interesse" <?= $produto['negociacao'] === true ? 'disabled' : '' ?> id="btn-interesse-<?= $produto['id'] ?>" style="cursor: <?= $produto['negociacao'] === true ? 'not-allowed' : 'pointer' ?>;" data-id="<?= $produto['id'] ?>" data-usuario="<?= $produto['id_usuario'] ?>" data-tipo-negociacao="<?= $produto['tipo_negociacao'] ?>"><i class="fa fa-handshake-o"></i> Negociar</button>
-                                                            <?php  } ?>
+                                                            <button class="btn btn-outline-primary btn-aviso" id="btn-aviso-<?= $produto['id'] ?>" style="cursor: cursor>;" data-id="<?= $produto['id'] ?>"><i class="icofont icofont-notification"></i> Avise-me Quando Disponível</button>
                                                         <?php } else { ?>
-                                                            <a class="btn btn-outline-danger" href="/login?acao=1&produto=<?= $produto['id'] ?>&usuario=<?= $produto['id_usuario'] ?>" style="cursor: pointer;"><i class="icofont icofont-heart-alt"></i> Desejo</a>
-                                                            <a class="btn btn-outline-success" href="/login?acao=2&produto=<?= $produto['id'] ?>&usuario=<?= $produto['id_usuario'] ?>" style="cursor: pointer;"><i class="fa fa-handshake-o"></i> Negociar</a>
+                                                            <button class="btn btn-outline-primary btn-aviso" id="btn-aviso-<?= $produto['id'] ?>" style="cursor: cursor>;" data-id="<?= $produto['id'] ?>"><i class="icofont icofont-notification"></i> Avise-me Quando Disponível</button>
                                                         <?php } ?>
                                                     </p>
-                                                </div>
-                                                <div class="product-item-footer">
-                                                    <div class="stars-rating">
-                                                        <?php for ($i = 0; $i < 5; $i++) { ?>
-                                                            <i class="icofont icofont-star <?= round($produto['classificacao']) > $i ? 'active' : '' ?>"></i>
-                                                        <?php } ?>
-                                                        <span>(<?= $produto['quantidade_avaliacoes'] ?>)</span>
-                                                    </div>
-                                                    <?php if (isset($_SESSION['usuario_logado'])) { ?>
-                                                        <div class="text-center" style="color: #ccc; font-size: 12px; font-weight: 400;">
-                                                            <strong><?= $produto['tipo_negociacao'] === 'L' ? 'Locação' : 'Venda' ?></strong>
-                                                        </div>
-                                                        <div class="text-center" style="color: #ccc; font-size: 12px; font-weight: 400;">
-                                                            <strong><?= $produto['cidade'] ?> - <?= $produto['uf'] ?></strong>
-                                                        </div>
-                                                        <?php
-                                                            switch (round($produto['classificacao_usuario'])) {
-                                                                case 1:
-                                                                    $classe    = 'text-danger';
-                                                                    $reputação = 'Reputação Péssima';
-                                                                    break;
-                                                                case 2:
-                                                                    $classe    = 'text-warning';
-                                                                    $reputação = 'Reputação Ruim';
-                                                                    break;
-                                                                case 3:
-                                                                    $classe    = 'text-info';
-                                                                    $reputação = 'Reputação Regular';
-                                                                    break;
-                                                                case 4:
-                                                                    $classe    = 'text-primary';
-                                                                    $reputação = 'Reputação Boa';
-                                                                    break;
-                                                                case 5:
-                                                                    $classe    = 'text-success';
-                                                                    $reputação = 'Reputação Excelente';
-                                                                    break;
-                                                                default:
-                                                                    $classe    = '';
-                                                                    $reputação = 'Sem Reputação';
-                                                                    break;
-                                                            }
-                                                        ?>
-                                                        <div class="text-center <?= $classe ?>" style="color: #ccc; font-size: 12px; font-weight: 400;">
-                                                            <strong><?= $reputação ?></strong>
-                                                            <strong>(<?= $produto['quantidade_avaliacoes_usuario'] ?>)</strong>
-                                                        </div>
-                                                    <?php } ?>
                                                 </div>
                                             </div>
                                         </div>

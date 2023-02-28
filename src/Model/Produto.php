@@ -44,4 +44,9 @@ class Produto
         ProdutoDAO::cadastrarProduto($nome, $valor, $imagem, $tipoProduto);
         return [true, ''];
     }
+
+    public static function buscarProdutosPorPesquisa(string $pesquisa, ?array $tipos) : array
+    {
+        return ProdutoDAO::buscarProdutosPorPesquisa($pesquisa, $tipos);
+    }
 }

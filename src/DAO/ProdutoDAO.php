@@ -11,4 +11,22 @@ class ProdutoDAO
 
         $query->execute([':tipo' => $tipoProduto, ':nome' => $nome, ':imagem' => $imagem, ':valor' => $valor]);
     }
+
+    public static function buscarProdutosPorPesquisa(string $pesquisa, ?array $tipos) : array
+    {
+        $conexao = ConexaoHelper::retornarConexao();
+        $sql     = "SELECT a.*
+                    FROM tbprodutos a
+                    WHERE a.nome LIKE :nome";
+
+        if (isset($tipos)) {
+            $sql = $sql . ' AND a.id_tipo IN (' . implode(', ', $tipos) . ')';
+        }
+
+        $sql   = $sql . " ORDER BY NOME";
+        $query = $conexao->prepare($sql);
+        $query->execute([':nome' => "%{$pesquisa}%"]);
+
+        return $query->fetchAll();
+    }
 }
