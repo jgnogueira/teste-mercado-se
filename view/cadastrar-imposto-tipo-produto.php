@@ -52,7 +52,7 @@
                                 <div class="col-sm-12">
                                     <fieldset class="form-group position-relative">
                                         <label for="nome">Percentual de Imposto</label>
-                                        <input type="text" class="form-control" id="nome" name="nome" title="Preencha este campo" value="">
+                                        <input type="text" class="form-control" id="nome" name="nome" title="Preencha este campo">
                                         <span style="position: absolute; right: 10px; top: 38px;" class="icofont" id="icone-feedback-nome"></span>
                                         <div class="invalid-feedback" id="feedback-nome" style="font-size: 12px;">
 
@@ -92,6 +92,7 @@
     <script>
         $(document).ready(function() {
             $('#cadastrar-imposto-tipo-produto').addClass('active');
+            $('#nome').mask('00%', {reverse: true});
         });
     </script>
 </body>

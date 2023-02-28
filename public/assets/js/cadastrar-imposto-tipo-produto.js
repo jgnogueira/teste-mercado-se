@@ -12,7 +12,7 @@ $('#btn-salvar').on('click', function () {
 
     var formData = new FormData();
 
-    formData.append('percentual', $('#nome').val());
+    formData.append('percentual', $('#nome').val().toString().replace('%', ''));
     formData.append('tipo', $('#tipo').val());
 
     Swal.fire({
