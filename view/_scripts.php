@@ -15,8 +15,3 @@
 <script src="assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
 <!-- Geral -->
 <script src="assets/js/geral.js"></script>
-<?php if (isset($_SESSION['usuario_logado'])) { ?>
-    <script>
-        verificarNotificacoes('<?= isset($_SERVER['PATH_INFO']) && $_SERVER['PATH_INFO'] !== '/chat' ? 'S' : 'N'?>', <?= intval($_SESSION['verifica_chat']) ?>, <?= intval($_SESSION['verifica_avaliacao']) ?>);
-    </script>
-<?php } ?>

@@ -1,0 +1,23 @@
+<?php
+
+require_once __DIR__ . '/../DAO/CarrinhoDAO.php';
+
+class Carrinho 
+{
+    public static function adicionarProduto(int $idProduto) : bool
+    {
+        if (self::verificarExisteProduto($idProduto)) {
+            return false;
+        }
+
+        CarrinhoDAO::adicionarProduto($idProduto, $_SESSION['id_usuario']);
+        return true;
+    }
+
+    public static function verificarExisteProduto(int $idProduto) : bool
+    {
+        $existe = CarrinhoDAO::verificarExisteProduto($idProduto, $_SESSION['id_usuario']);
+
+        return intval($existe['quantidade']) === 0 ? false : true;
+    }
+}
