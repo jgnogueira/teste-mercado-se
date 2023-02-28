@@ -16,11 +16,7 @@
                <h2>Página não encontrada!</h2>
                <h4>Infelizmente a página que você procura não está disponível.</h4>
                <div class="center-holder">
-                  <?php if (isset($_SESSION['usuario_logado'])) { ?>
-                     <a href="/minha-conta" class="btn btn-secondary btn-lg"><i class="icofont icofont-ui-user"></i> IR PARA MINHA CONTA</a>
-                  <?php } else { ?>
-                     <a href="/login" class="btn btn-secondary btn-lg"><i class="icofont icofont-login"></i> IR PARA LOGIN</a>
-                  <?php } ?>
+                  <a href="/lista-de-produtos" class="btn btn-secondary btn-lg"><i class="icofont icofont-login"></i> IR PARA LISTA DE PRODUTOS</a>
                </div>
             </div>
          </div>

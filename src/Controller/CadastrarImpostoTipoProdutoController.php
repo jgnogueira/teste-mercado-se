@@ -3,15 +3,15 @@
 require_once __DIR__ . '/../Helper/RenderizadorDeHtmlHelper.php';
 require_once __DIR__ . '/../Model/ImpostoTipoProduto.php';
 require_once __DIR__ . '/../Model/TipoProduto.php';
+require_once __DIR__ . '/../Trait/AcessoAdministradorTrait.php';
 
 class CadastrarImpostoTipoProdutoController
 {
+    use AcessoAdministrador;
+
     public static function exibirPagina() : void
     {
-        if (!$_SESSION['usuario_administrador']) {
-            header('location: http://localhost:8080/lista-de-produtos');
-            exit();
-        }
+        self::permitirAcessoAdministrador();
         
         $tipos = TipoProduto::buscarTiposProduto();
 
