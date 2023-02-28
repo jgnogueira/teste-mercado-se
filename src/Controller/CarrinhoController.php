@@ -2,12 +2,13 @@
 
 require_once __DIR__ . '/../Helper/RenderizadorDeHtmlHelper.php';
 require_once __DIR__ . '/../Model/Carrinho.php';
+require_once __DIR__ . '/../Model/ImpostoTipoProduto.php';
 
 class CarrinhoController
 {
     public static function exibirPagina() : void
     {
-        $produtosCarrinho = Carrinho::buscarProdutos();
+        $produtosCarrinho = self::atualizarValores(Carrinho::buscarProdutos());
 
         echo RenderizadorDeHtmlHelper::renderizarHtml('carrinho', ['produtosCarrinho' => $produtosCarrinho]);
     }
@@ -47,5 +48,19 @@ class CarrinhoController
         } catch (Exception $ex) {
             echo json_encode(['sucesso' => false, 'erro' => 'Tente novamente', 'log' => $ex->getMessage()]);
         }
+    }
+
+    private static function atualizarValores(array $produtos) : array
+    {
+        $impostos = ImpostoTipoProduto::buscarImpostos();
+
+        foreach ($produtos as &$produto) {
+            $valorImposto = ($impostos[$produto['tipo_produto']] * $produto['valor']) / 100;
+
+            $produto['valor_total'] = $produto['valor'] * $produto['quantidade'];
+            $produto['valor_total_imposto'] = $valorImposto * $produto['quantidade'];
+        }
+
+        return $produtos;
     }
 }
