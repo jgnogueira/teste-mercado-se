@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../Helper/RenderizadorDeHtmlHelper.php';
 require_once __DIR__ . '/../Model/Produto.php';
 require_once __DIR__ . '/../Model/TipoProduto.php';
+require_once __DIR__ . '/../Model/Carrinho.php';
 
 class ListaDeProdutosController
 {
@@ -21,8 +22,13 @@ class ListaDeProdutosController
             $parametrosTipoProduto = null;
         }
 
-        $produtos = Produto::buscarProdutosPorPesquisa($parametroPesquisa, $parametrosTipoProduto);
-        $tipos    = self::gerarParametrosUrlTipos(TipoProduto::buscarTiposPorPesquisa($parametroPesquisa), $parametrosTipoProduto);
+        if (isset($_SESSION['usuario_logado'])) {
+            $produtos = self::verificarProdutoCarrinho(Produto::buscarProdutosPorPesquisa($parametroPesquisa, $parametrosTipoProduto));
+        } else {
+            $produtos = Produto::buscarProdutosPorPesquisa($parametroPesquisa, $parametrosTipoProduto);
+        }
+        
+        $tipos = self::gerarParametrosUrlTipos(TipoProduto::buscarTiposPorPesquisa($parametroPesquisa), $parametrosTipoProduto);
         
         echo RenderizadorDeHtmlHelper::renderizarHtml('lista-de-produtos',
                                                                         [
@@ -75,5 +81,17 @@ class ListaDeProdutosController
         }
 
         return $tipos;
+    }
+
+    private static function verificarProdutoCarrinho(array $produtos) : array
+    {
+        foreach ($produtos as &$produto) {
+            $produto['carrinho'] = false;
+            if (Carrinho::verificarExisteProduto($produto['id'])) {
+                $produto['carrinho'] = true;
+            }
+        }
+
+        return $produtos;
     }
 }
