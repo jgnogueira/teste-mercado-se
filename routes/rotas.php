@@ -14,5 +14,7 @@ $rotas = [
     '/salvar-imposto-tipo-produto'    => 'CadastrarImpostoTipoProdutoController@cadastrarImposto@POST@autenticado',
     '/cadastrar-produto'              => 'CadastrarProdutoController@exibirPagina@GET@autenticado',
     '/salvar-produto'                 => 'CadastrarProdutoController@cadastrarProduto@POST@autenticado',
+    '/carrinho'                       => 'CarrinhoController@exibirPagina@GET@autenticado',
     '/adicionar-produto-carrinho'     => 'CarrinhoController@adicionarProdutoCarrinho@POST@autenticado',
+    '/remover-produto-carrinho'       => 'CarrinhoController@removerProdutoCarrinho@POST@autenticado',
 ];

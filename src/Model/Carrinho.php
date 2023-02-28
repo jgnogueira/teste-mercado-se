@@ -20,4 +20,15 @@ class Carrinho
 
         return intval($existe['quantidade']) === 0 ? false : true;
     }
+
+    public static function buscarProdutos() : array
+    {
+        return CarrinhoDAO::buscarProdutos($_SESSION['id_usuario']);
+    }
+
+    public static function removerProduto(int $idCarrinho) : bool
+    {
+        CarrinhoDAO::removerProduto($idCarrinho, $_SESSION['id_usuario']);
+        return true;
+    }
 }
