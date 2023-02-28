@@ -26,7 +26,7 @@ class TipoProdutoDAO
         $conexao = ConexaoHelper::retornarConexao();
         $sql     = "SELECT b.id, b.nome
                     FROM tbprodutos a, tbtipos_produto b
-                    WHERE a.nome LIKE :nome";
+                    WHERE UPPER(a.nome) LIKE UPPER(:nome)";
         
         $sql = $sql . " AND b.id = a.id_tipo";
 
