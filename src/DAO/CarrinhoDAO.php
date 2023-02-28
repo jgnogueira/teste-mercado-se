@@ -37,4 +37,12 @@ class CarrinhoDAO
 
         $query->execute([':id_carrinho' => $idCarrinho, ':id_usuario' => $idUsuario]);
     }
+
+    public static function atualizarQuantidadeProduto(int $idCarrinho, int $quantidade, int $idUsuario) : void
+    {
+        $conexao = ConexaoHelper::retornarConexao();
+        $query   = $conexao->prepare("UPDATE tbcarrinho SET quantidade = :quantidade WHERE id = :id_carrinho AND id_usuario = :id_usuario");
+
+        $query->execute(['quantidade' => $quantidade, ':id_carrinho' => $idCarrinho, ':id_usuario' => $idUsuario]);
+    }
 }

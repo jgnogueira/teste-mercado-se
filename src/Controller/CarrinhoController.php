@@ -35,4 +35,17 @@ class CarrinhoController
             echo json_encode(['sucesso' => false, 'erro' => 'Tente novamente', 'log' => $ex->getMessage()]);
         }
     }
+
+    public static function atualizarQuantidadeProdutoCarrinho() : void
+    {
+        $idCarrinho = filter_input(INPUT_POST, 'carrinho',   FILTER_VALIDATE_INT);
+        $quantidade = filter_input(INPUT_POST, 'quantidade', FILTER_VALIDATE_INT);
+
+        try {
+            $sucesso = Carrinho::atualizarQuantidadeProduto($idCarrinho, $quantidade);
+            echo json_encode(['sucesso' => $sucesso, 'erro' => '', 'log' => '']);
+        } catch (Exception $ex) {
+            echo json_encode(['sucesso' => false, 'erro' => 'Tente novamente', 'log' => $ex->getMessage()]);
+        }
+    }
 }

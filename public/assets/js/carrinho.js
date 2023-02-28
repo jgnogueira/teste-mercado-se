@@ -1,22 +1,24 @@
 $('.btn-quantidade').on('click', function () {
-    var negociacao = $(this).data('id');
-    var produto    = $(this).data('produto');
+    var carrinho    = $(this).data('id');
+    var nomeProduto = $(this).data('nome');
 
     Swal.fire({
-        icon: 'question',
-        title: 'VOCÊ REALMENTE DESEJA REGISTRAR A VENDA DESTE PRODUTO?',
-        footer: produto,
-        showDenyButton: true,
-        reverseButtons: true,
-        allowOutsideClick: false,
-        width: 1050,
-        confirmButtonText: `Registrar`,
-        confirmButtonColor: '#28a745',
-        denyButtonText: `Cancelar`,
+        icon: 'info',
+        title: 'ALTERAR QUANTIDADE',
+        footer: nomeProduto,
+        input: 'range',
+        inputAttributes: {
+            min: 1,
+            max: 99,
+            step: 1
+        },
+        inputValue: 1,
+        showCloseButton: true,
     }).then((result) => {
         if (result.isConfirmed) {
             var data = {
-                negociacao: negociacao
+                carrinho: carrinho,
+                quantidade: result.value
             }
             Swal.fire({
                 title: 'Aguarde...',
@@ -26,7 +28,7 @@ $('.btn-quantidade').on('click', function () {
                 didOpen: () => {
                     Swal.showLoading()
                     $.ajax({
-                        url: '/registrar-venda-usuario',
+                        url: '/atualizar-quantidade-produto',
                         type: 'POST',
                         dataType: 'json',
                         data: data
@@ -34,7 +36,7 @@ $('.btn-quantidade').on('click', function () {
                         if (data.sucesso) {
                             Swal.fire({
                                 icon: 'success',
-                                title: 'VENDA REGISTRADA COM SUCESSO!',
+                                title: 'QUANTIDADE ATUALIZADA COM SUCESSO!',
                                 width: 680,
                                 allowOutsideClick: false,
                                 showCancelButton: false
@@ -47,7 +49,7 @@ $('.btn-quantidade').on('click', function () {
                             console.log(data.log);
                             Swal.fire({
                                 icon: 'error',
-                                title: 'NÃO FOI POSSÍVEL REGISTRAR A VENDA DESTE PRODUTO!',
+                                title: 'NÃO FOI POSSÍVEL ATUALIZAR A QUANTIDADE!',
                                 width: 940,
                                 allowOutsideClick: false,
                                 showCancelButton: false,
@@ -61,7 +63,7 @@ $('.btn-quantidade').on('click', function () {
                     }).fail(function () {
                         Swal.fire({
                             icon: 'error',
-                            title: 'NÃO FOI POSSÍVEL REGISTRAR A VENDA DESTE PRODUTO!',
+                            title: 'NÃO FOI POSSÍVEL ATUALIZAR A QUANTIDADE!',
                             width: 940,
                             allowOutsideClick: false,
                             showCancelButton: false,

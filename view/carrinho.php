@@ -72,8 +72,8 @@
                                             <td style="text-align: left;"><?= $produto['quantidade'] ?></td>
                                             <td style="text-align: left;">R$ <?= number_format($produto['valor_total'], 2, ',', '.') ?></td>
                                             <td style="text-align: left;">R$ <?= number_format($produto['valor_total_imposto'], 2, ',', '.') ?></td>
-                                            <td style="text-align: center;"><button type="button" class="btn btn-info btn-sm btn-quantidade" style="cursor: pointer;" data-id="<?= $produto['id_carrinho'] ?>" data-nome="<?= $produto['nome'] ?>"><i class="icofont icofont-cart-alt"></i></button></td>
-                                            <td style="text-align: center;"><button type="button" class="btn btn-danger btn-sm btn-remover"  style="cursor: pointer;" data-id="<?= $produto['id_carrinho'] ?>" data-nome="<?= $produto['nome'] ?>"><i class="icofont icofont-trash"></i></button></td>
+                                            <td style="text-align: center;"><button type="button" class="btn btn-info   btn-sm btn-quantidade" style="cursor: pointer;" data-id="<?= $produto['id_carrinho'] ?>" data-nome="<?= $produto['nome'] ?>"><i class="icofont icofont-cart-alt"></i></button></td>
+                                            <td style="text-align: center;"><button type="button" class="btn btn-danger btn-sm btn-remover"    style="cursor: pointer;" data-id="<?= $produto['id_carrinho'] ?>" data-nome="<?= $produto['nome'] ?>"><i class="icofont icofont-trash"></i></button></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
