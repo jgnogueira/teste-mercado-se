@@ -37,4 +37,9 @@ class Carrinho
         CarrinhoDAO::atualizarQuantidadeProduto($idCarrinho, $quantidade, $_SESSION['id_usuario']);
         return true;
     }
+
+    public static function limparCarrinho() : void
+    {
+        CarrinhoDAO::limparCarrinho($_SESSION['id_usuario']);
+    }
 }

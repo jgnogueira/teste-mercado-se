@@ -159,3 +159,75 @@ $('.btn-remover').on('click', function () {
         }
     })
 });
+
+$('#btn-finalizar').on('click', function () {
+    Swal.fire({
+        icon: 'question',
+        title: 'VOCÊ REALMENTE DESEJA FINALIZAR SUA COMPRA?',
+        showDenyButton: true,
+        reverseButtons: true,
+        allowOutsideClick: false,
+        width: 900,
+        confirmButtonText: `Finalizar`,
+        confirmButtonColor: '#28a745',
+        denyButtonText: `Cancelar`,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: 'Aguarde...',
+                showCancelButton: false,
+                showLoaderOnConfirm: true,
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading()
+                    $.ajax({
+                        url: '/finalizar-compra',
+                        type: 'POST',
+                        dataType: 'json'
+                    }).done(function (data) {
+                        if (data.sucesso) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'COMPRA FINALIZADA COM SUCESSO!',
+                                width: 680,
+                                allowOutsideClick: false,
+                                showCancelButton: false
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            })
+                        } else {
+                            console.log(data.log);
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'NÃO FOI POSSÍVEL FINALIZAR SUA COMPRA!',
+                                width: 780,
+                                allowOutsideClick: false,
+                                showCancelButton: false,
+                                didOpen: () => {
+                                    Swal.showValidationMessage(
+                                        'Tente novamente'
+                                    )
+                                }
+                            })
+                        }
+                    }).fail(function () {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'NÃO FOI POSSÍVEL FINALIZAR SUA COMPRA!',
+                            width: 780,
+                            allowOutsideClick: false,
+                            showCancelButton: false,
+                            didOpen: () => {
+                                Swal.showValidationMessage(
+                                    'Tente novamente'
+                                )
+                            }
+                        })
+                    })
+                }
+            })
+        }
+    })
+});

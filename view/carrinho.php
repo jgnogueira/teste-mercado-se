@@ -86,6 +86,13 @@
                                 <?php } ?>
                             </table>
                         </div>
+                        <?php if (count($produtosCarrinho) > 0) { ?>
+                            <div class="row mt-4">
+                                <div class="col-sm-12 text-right">
+                                    <button class="btn btn-outline-primary btn-lg" id="btn-finalizar" style="cursor: pointer;"><i class="icofont icofont-verification-check"></i> Finalizar Compra </button>
+                                </div>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

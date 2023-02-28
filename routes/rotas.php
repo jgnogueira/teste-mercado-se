@@ -18,4 +18,5 @@ $rotas = [
     '/adicionar-produto-carrinho'     => 'CarrinhoController@adicionarProdutoCarrinho@POST@autenticado',
     '/remover-produto-carrinho'       => 'CarrinhoController@removerProdutoCarrinho@POST@autenticado',
     '/atualizar-quantidade-produto'   => 'CarrinhoController@atualizarQuantidadeProdutoCarrinho@POST@autenticado',
+    '/finalizar-compra'               => 'VendasController@finalizarCompra@POST@autenticado',
 ];
