@@ -132,9 +132,9 @@
                     var api = this.api(),
                         data;
 
-                    var intVal = function(i) {
+                    var floatVal = function(i) {
                         return typeof i === 'string' ?
-                            parseInt(i.replace(/[^0-9,]*/g, '').replace(',', '.')) :
+                            parseFloat(i.replace(/[^0-9,]*/g, '').replace(',', '.')) :
                             typeof i === 'number' ?
                             i : 0;
                     };
@@ -145,7 +145,7 @@
                         })
                         .data()
                         .reduce(function(a, b) {
-                            return intVal(a) + intVal(b);
+                            return floatVal(a) + floatVal(b);
                         }, 0);
 
                     var valorTotalImpostos = api
@@ -154,7 +154,7 @@
                         })
                         .data()
                         .reduce(function(a, b) {
-                            return intVal(a) + intVal(b);
+                            return floatVal(a) + floatVal(b);
                         }, 0);
 
                     $('#total-produtos').html('R$ ' + valorTotal.toLocaleString('pt-br', {minimumFractionDigits: 2}));
