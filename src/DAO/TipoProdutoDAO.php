@@ -11,4 +11,13 @@ class TipoProdutoDAO
 
         $query->execute([':nome' => $nome]);
     }
+
+    public static function buscarTiposProduto() : array
+    {
+        $conexao = ConexaoHelper::retornarConexao();
+        $query   = $conexao->prepare("SELECT id, nome FROM tbtipos_produto ORDER BY nome");
+        $query->execute();
+
+        return $query->fetchAll();
+    }
 }

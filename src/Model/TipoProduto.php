@@ -15,4 +15,11 @@ class TipoProduto
         return [true, ''];
         
     }
+
+    public static function buscarTiposProduto() : array
+    {
+        $tipos = TipoProdutoDAO::buscarTiposProduto();
+
+        return $tipos;
+    }
 }
