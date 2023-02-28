@@ -22,4 +22,11 @@ class TipoProduto
 
         return $tipos;
     }
+
+    public static function buscarTiposPorPesquisa(string $pesquisa) : array
+    {
+        $tipos = TipoProdutoDAO::buscarTiposPorPesquisa($pesquisa);
+
+        return $tipos;
+    }
 }

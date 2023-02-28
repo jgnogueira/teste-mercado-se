@@ -1,7 +1,8 @@
 <?php
 
 require_once __DIR__ . '/../Helper/RenderizadorDeHtmlHelper.php';
-//require_once __DIR__ . '/../Models/Produto.php';
+require_once __DIR__ . '/../Model/Produto.php';
+require_once __DIR__ . '/../Model/TipoProduto.php';
 
 class ListaDeProdutosController
 {
@@ -20,30 +21,9 @@ class ListaDeProdutosController
             $parametrosTipoProduto = null;
         }
 
-        /*if (isset($_SESSION['usuario_logado'])) {
-            $plataformas     = self::gerarParametrosUrlPlataformas(Plataforma::buscarPlataformasPorPesquisaLogado($parametroPesquisa, $parametrosDesenvolvedoras, $parametrosGeneros, $parametrosEstados, $parametrosNegociacoes), $parametrosPlataformas);
-            $desenvolvedoras = self::gerarParametrosUrlDesenvolvedoras(Desenvolvedora::buscarDesenvolvedorasPorPesquisaLogado($parametroPesquisa, $parametrosPlataformas, $parametrosGeneros, $parametrosEstados, $parametrosNegociacoes), $parametrosDesenvolvedoras);
-            $generos         = self::gerarParametrosUrlGeneros(Genero::buscarGenerosPorPesquisaLogado($parametroPesquisa, $parametrosPlataformas, $parametrosDesenvolvedoras, $parametrosEstados, $parametrosNegociacoes), $parametrosGeneros);
-            $estados         = self::gerarParametrosUrlEstados(Produto::buscarEstadosPorPesquisaLogado($parametroPesquisa, $parametrosPlataformas, $parametrosDesenvolvedoras, $parametrosGeneros, $parametrosNegociacoes), $parametrosEstados);
-            $negociacoes     = self::gerarParametrosUrlNegociacoes(Produto::buscarNegociacoesPorPesquisaLogado($parametroPesquisa, $parametrosPlataformas, $parametrosDesenvolvedoras, $parametrosGeneros, $parametrosEstados), $parametrosNegociacoes);
-        } else {
-            $plataformas     = self::gerarParametrosUrlPlataformas(Plataforma::buscarPlataformasPorPesquisa($parametroPesquisa, $parametrosDesenvolvedoras, $parametrosGeneros), $parametrosPlataformas);
-            $desenvolvedoras = self::gerarParametrosUrlDesenvolvedoras(Desenvolvedora::buscarDesenvolvedorasPorPesquisa($parametroPesquisa, $parametrosPlataformas, $parametrosGeneros), $parametrosDesenvolvedoras);
-            $generos         = self::gerarParametrosUrlGeneros(Genero::buscarGenerosPorPesquisa($parametroPesquisa, $parametrosPlataformas, $parametrosDesenvolvedoras), $parametrosGeneros);
-            $estados         = [];
-            $negociacoes     = [];
-        }*/
-        
-        /*if (isset($_SESSION['usuario_logado'])) {
-            $produtos      = self::verificarAvisoProduto(self::verificarNegociacaoProduto(self::verificarProdutoListaDeDesejos(Produto::buscarProdutosPorPesquisaLogado($parametroPesquisa, $colunaOrdenacao, $parametrosPlataformas, $parametrosDesenvolvedoras, $parametrosGeneros, $inicioPesquisa, $quantidadeDeProdutosPorPagina, $parametrosEstados, $parametrosNegociacoes))));
-            $totalProdutos = Produto::buscarTotalProdutosPorPesquisaLogado($parametroPesquisa, $parametrosPlataformas, $parametrosDesenvolvedoras, $parametrosGeneros, $parametrosEstados, $parametrosNegociacoes);
-        } else {
-            $produtos      = Produto::buscarProdutosPorPesquisa($parametroPesquisa, $colunaOrdenacao, $parametrosPlataformas, $parametrosDesenvolvedoras, $parametrosGeneros, $inicioPesquisa, $quantidadeDeProdutosPorPagina);
-            $totalProdutos = Produto::buscarTotalProdutosPorPesquisa($parametroPesquisa, $parametrosPlataformas, $parametrosDesenvolvedoras, $parametrosGeneros);
-        }*/
-
+        //$produtos = self::verificarAvisoProduto(self::verificarNegociacaoProduto(self::verificarProdutoListaDeDesejos(Produto::buscarProdutosPorPesquisaLogado($parametroPesquisa, $colunaOrdenacao, $parametrosPlataformas, $parametrosDesenvolvedoras, $parametrosGeneros, $inicioPesquisa, $quantidadeDeProdutosPorPagina, $parametrosEstados, $parametrosNegociacoes))));
         $produtos = [];
-        $tipos    = [];
+        $tipos    = self::gerarParametrosUrlTipos(TipoProduto::buscarTiposPorPesquisa($parametroPesquisa), $parametrosTipoProduto);
         
         echo RenderizadorDeHtmlHelper::renderizarHtml('lista-de-produtos',
                                                                         [
@@ -53,10 +33,10 @@ class ListaDeProdutosController
                                                                         ]);
     }
 
-    private static function gerarParametrosUrlDesenvolvedoras(array $desenvolvedoras, ?array $parametrosDesenvolvedoras) : array
+    private static function gerarParametrosUrlTipos(array $tipos, ?array $parametrosTipos) : array
     {
-        foreach ($desenvolvedoras as $chave => &$desenvolvedora) {
-            $desenvolvedora['selecionado'] = '';
+        foreach ($tipos as $chave => &$tipo) {
+            $tipo['selecionado'] = '';
 
             $urlAtual      = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             $parametrosUrl = parse_url($urlAtual, PHP_URL_QUERY);
@@ -67,15 +47,15 @@ class ListaDeProdutosController
                 unset($parametrosUrl['pagina']);
             }
 
-            $parametrosUrl['desenvolvedora['. $chave. ']'] = $desenvolvedora['id'];
+            $parametrosUrl['tipo['. $chave. ']'] = $tipo['id'];
 
-            $desenvolvedora['url'] = preg_replace('/%5B[0-9]+%5D/', '[]', http_build_query($parametrosUrl));
+            $tipo['url'] = preg_replace('/%5B[0-9]+%5D/', '[]', http_build_query($parametrosUrl));
         }
 
-        if (isset($parametrosDesenvolvedoras)) {
-            foreach ($desenvolvedoras as &$desenvolvedora) {
-                if (in_array($desenvolvedora['id'], $parametrosDesenvolvedoras)) {
-                    $desenvolvedora['selecionado'] = 'checked';
+        if (isset($parametrosTipos)) {
+            foreach ($tipos as &$tipo) {
+                if (in_array($tipo['id'], $parametrosTipos)) {
+                    $tipo['selecionado'] = 'checked';
 
                     $urlAtual      = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                     $parametrosUrl = parse_url($urlAtual, PHP_URL_QUERY);
@@ -86,15 +66,15 @@ class ListaDeProdutosController
                         unset($parametrosUrl['pagina']);
                     }
 
-                    if (($chave = array_search($desenvolvedora['id'], $parametrosUrl['desenvolvedora'])) !== false) {
-                        unset($parametrosUrl['desenvolvedora'][$chave]);
+                    if (($chave = array_search($tipo['id'], $parametrosUrl['tipo'])) !== false) {
+                        unset($parametrosUrl['tipo'][$chave]);
                     }
                     
-                    $desenvolvedora['url'] = preg_replace('/%5B[0-9]+%5D/', '[]', http_build_query($parametrosUrl));
+                    $tipo['url'] = preg_replace('/%5B[0-9]+%5D/', '[]', http_build_query($parametrosUrl));
                 }
             }
         }
 
-        return $desenvolvedoras;
+        return $tipos;
     }
 }

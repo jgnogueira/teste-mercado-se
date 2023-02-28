@@ -20,4 +20,20 @@ class TipoProdutoDAO
 
         return $query->fetchAll();
     }
+
+    public static function buscarTiposPorPesquisa(string $pesquisa) : array
+    {
+        $conexao = ConexaoHelper::retornarConexao();
+        $sql     = "SELECT b.id, b.nome
+                    FROM tbprodutos a, tbtipos_produto b
+                    WHERE a.nome LIKE :nome";
+        
+        $sql = $sql . " AND b.id = a.id_tipo";
+
+        $sql   = $sql . " ORDER BY b.nome";
+        $query = $conexao->prepare($sql);
+        $query->execute([':nome' => "%{$pesquisa}%"]);
+
+        return $query->fetchAll();
+    }
 }
