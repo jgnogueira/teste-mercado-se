@@ -99,7 +99,7 @@ function validarNome() {
     var nome = nome.toString();
     var nome = nome.trim();
 
-    if (nome === null || nome === '') {
+    if (nome === null || nome === '' || nome === '%') {
         $('#nome').addClass('is-invalid');
         $('#feedback-nome').html('Percentual deve ser informado');
         $('#icone-feedback-nome').addClass('icofont-exclamation-circle');
