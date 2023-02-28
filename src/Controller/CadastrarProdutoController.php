@@ -8,6 +8,11 @@ class CadastrarProdutoController
 {
     public static function exibirPagina() : void
     {
+        if (!$_SESSION['usuario_administrador']) {
+            header('location: http://localhost:8080/lista-de-produtos');
+            exit();
+        }
+        
         $tipos = TipoProduto::buscarTiposProduto();
 
         echo RenderizadorDeHtmlHelper::renderizarHtml('cadastrar-produto', ['tipos' => $tipos]);

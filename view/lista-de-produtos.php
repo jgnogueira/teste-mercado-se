@@ -4,7 +4,7 @@
 <head>
     <?php require_once '_head.php' ?>
     <title>Mercado SoftExpert - Lista De Produtos</title>
-    <?php if (count($produtos) === 0 || !isset($_SESSION['usuario_logado'])) { ?>
+    <?php if (count($produtos) === 0 || !isset($_SESSION['usuario_logado']) || !$_SESSION['usuario_administrador']) { ?>
         <style>
             html {
                 height: 100%;
@@ -97,7 +97,7 @@
                                                     </h5>
                                                     <p class="mt-3">
                                                         <?php if (isset($_SESSION['usuario_logado'])) { ?>
-                                                            <button class="btn btn-outline-primary btn-aviso" id="btn-aviso-<?= $produto['id'] ?>" style="cursor: cursor>;" data-id="<?= $produto['id'] ?>"><i class="icofont icofont-notification"></i> Avise-me Quando Disponível</button>
+                                                            <button class="btn btn-outline-primary btn-carrinho" id="btn-carrinho-<?= $produto['id'] ?>" style="cursor: cursor>;" data-id="<?= $produto['id'] ?>"><i class="icofont icofont-shopping-cart"></i> Adicionar ao carrinho</button>
                                                         <?php } else { ?>
                                                             <a class="btn btn-outline-primary" href="/login"><i class="icofont icofont-shopping-cart"></i> Adicionar ao carrinho</a>
                                                         <?php } ?>

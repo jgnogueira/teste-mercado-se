@@ -17,13 +17,12 @@
                             <li><a href="/cadastro">Cadastro</a></li>
                             <li><a href="/login">Login</a></li>
                         <?php } else { ?>
-                            <li><a href="/minha-conta">Minha Conta</a></li>
-                            <li><a href="/meu-endereco">Meu Endereço</a></li>
-                            <li><a href="/lista-de-desejos">Lista de Desejos</a></li>
-                            <li><a href="/negociacoes-finalizadas">Negociações Finalizadas</a></li>
-                            <li><a href="/negociacoes-abertas">Negociações Abertas</a></li>
-                            <li><a href="/meus-produtos">Meus Produtos</a></li>
-                            <li><a href="/novo-produto">Novo Produto</a></li>
+                            <?php if (isset($_SESSION['usuario_administrador']) && $_SESSION['usuario_administrador']) { ?>
+                                <li><a href="/cadastrar-produto">Cadastrar Produto</a></li>
+                                <li><a href="/cadastrar-tipo-produto">Cadastrar Tipo de Produto</a></li>
+                                <li><a href="/cadastrar-imposto-tipo-produto">Cadastrar Imposto para Tipo de Produto</a></li>
+                            <?php } ?>
+                            <li><a href="/carrinho">Carrinho</a></li>
                         <?php } ?>
                     </ul>
                 </div>
