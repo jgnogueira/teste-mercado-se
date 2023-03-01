@@ -7,8 +7,8 @@ class Usuario
 {
     public static function criarConta(string $nome, string $email, string $senha) : array
     {
-        if (!ValidacaoHelper::tamanho($nome, 3, 200)) {
-            return [false, 'Nome deve possuir entre 3 e 200 caracteres'];
+        if (!ValidacaoHelper::tamanho($nome, 3, 50)) {
+            return [false, 'Nome deve possuir entre 3 e 50 caracteres'];
         }
 
         if (!ValidacaoHelper::email($email)) {

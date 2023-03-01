@@ -15,7 +15,13 @@ class UsuarioDAO
     public static function buscarInformacoesUsuario(string|int $valor, string $coluna = 'id') : array|bool
     {
         $conexao = ConexaoHelper::retornarConexao();
-        $query   = $conexao->prepare("SELECT * FROM tbusuarios WHERE UPPER($coluna) = UPPER(:valor)");
+        $sql     = "SELECT * FROM tbusuarios WHERE id = :valor";
+
+        if ($coluna !== 'id') {
+            $sql = "SELECT * FROM tbusuarios WHERE UPPER($coluna) = UPPER(:valor)";
+        }
+
+        $query= $conexao->prepare($sql);
         $query->execute([':valor' => $valor]);
 
         return $query->fetch();
