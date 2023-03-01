@@ -6,7 +6,8 @@ class ConexaoHelper
     private static string $host     = 'localhost';
     private static string $usuario  = 'postgres';
     private static string $senha    = 'rootlocaldb';
-    private static string $database = 'mercado';
+    //private static string $database = 'mercado';
+    private static string $database = 'test_mercado';
     private static int $port        = 5432;
 
     private static function realizarConexao() : PDO
