@@ -50,4 +50,16 @@ class ImpostoTipoProdutoTest extends TestCase
         $this->assertTrue($cadastrarImposto[0]);
         $this->assertEquals(1, count($retorno));
     }
+
+    public function testBuscarImpostos() : void
+    {
+        $this->criarDataTest();
+
+        $impostos = ImpostoTipoProduto::buscarImpostos();
+        $expected = [];
+        $expected[1] = 10;
+        $expected[2] = 50;
+
+        $this->assertEquals($expected, $impostos);
+    }
 }
