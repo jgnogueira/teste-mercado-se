@@ -15,6 +15,7 @@ class CarrinhoTest extends TestCase
         $database->prepare('DELETE FROM tbcarrinho')->execute();
         $database->prepare('DELETE FROM tbprodutos')->execute();
         $database->prepare('DELETE FROM tbusuarios')->execute();
+        $database->prepare('DELETE FROM tbimposto_tipos_produto')->execute();
         $database->prepare('DELETE FROM tbtipos_produto')->execute();
     }
 
@@ -22,7 +23,7 @@ class CarrinhoTest extends TestCase
     {
         $database = ConexaoHelper::retornarConexao();
 
-        // Criando Uusários
+        // Criando Usuários
         $database->prepare("INSERT INTO tbusuarios (id, nome , senha, email, administrador)  VALUES (1, 'USUARIO', '1234', 'USUARIO@EMAIL.COM', FALSE);")->execute();
 
         // Criando Tipos dos Produtos
