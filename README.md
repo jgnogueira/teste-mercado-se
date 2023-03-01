@@ -11,7 +11,7 @@
 
 ## Como executar a aplicação
 
-É esperado que tenho o PHP na versão 8, o Composer na versão 2.5 e o PostgreSQL na versão 15 instalados em um ambiente Windows. Além disso, será necessário habilitar a extensão `pdo_pgsql` no arquivo `php.ini`.
+É esperado que tenha o PHP na versão 8, o Composer na versão 2.5 e o PostgreSQL na versão 15 instalados em um ambiente Windows. Além disso, será necessário habilitar a extensão `pdo_pgsql` no arquivo `php.ini`.
 
 Após clonar o repositório, basta navegar para dentro dele e executar o seguinte comando no terminal da aplicação:
 - `composer install` para instalar as dependências da aplicação.
