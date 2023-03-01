@@ -46,7 +46,7 @@ Para utilizar a aplicação, o usuário pode acessar a página de cadastro `http
 
 ## Executando testes
 
-Para executar os testes da aplicação, é necessário trocar o ambiente de conexão com o banco de dados. Para isso bastar localizar o arquivo `ConexaoHelper.php` que está no diretório `src/Helper/` e setar como `true` o valor da propriedade `$ambienteTest` na linha 5.
+Para executar os testes da aplicação, é necessário trocar o ambiente de conexão com o banco de dados. Para isso bastar localizar o arquivo `ConexaoHelper.php` que está no diretório `src/Helper/` e setar como `true` o valor da propriedade `$ambienteTeste` na linha 5.
 
 **Observação:** após setar a propriedade como true, o sistema utilizará a base de teste. Para voltar a utilizar a base padrão, a propriedade deverá ser definida como false. Caso os testes sejam executados com o valor da propriedade como false, será necessário restaurar o backup principal novamente.
 
