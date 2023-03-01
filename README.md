@@ -16,7 +16,7 @@
 Após clonar o repositório, basta navegar para dentro dele e executar o seguinte comando no terminal da aplicação:
 - `composer install` para instalar as dependências da aplicação.
 
-Feito isso, será necessário criar duas bases de dados. A primeira chamada `mercado` e a segunda chamada `test_mercado`. Após criar a primeira base, será necessário restaurar o backup que se encontra no diretório `infra/SQL/backup.sql`. Após criar a segunda base, será necessário novamente restaurar um novo backup, porém dessa vez localizado no diretório `infra/SQL/test_backup.sql`.
+Feito isso, será necessário criar duas bases de dados. A primeira chamada `mercado` e a segunda chamada `test_mercado`. Após criar a primeira base, será necessário restaurar o backup que se encontra no diretório `infra/SQL/backup.sql`. Após criar a segunda base, será 'novamente necessário restaurar um novo backup, porém dessa vez localizado no diretório `infra/SQL/test_backup.sql`.
 
 Exemplo de comando para restaurar o backup utilizando `pg_restore`:
 - `pg_restore --host <host_banco> --port <porta_banco> --verbose --clean --no-acl -U <usuario_banco> -d <nome_base_de_dados> <caminho_para_o_backup>`.
