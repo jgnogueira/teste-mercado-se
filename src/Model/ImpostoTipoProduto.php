@@ -1,11 +1,16 @@
 <?php
 
 require_once __DIR__ . '/../DAO/ImpostoTipoProdutoDAO.php';
+require_once __DIR__ . '/../Helper/ValidacaoHelper.php';
 
 class ImpostoTipoProduto 
 {
     public static function cadastrarImposto(int $percentual, int $tipoProduto) : array
     {
+        if (!ValidacaoHelper::numeroInteiro($percentual)) {
+            return [false, 'Percentual inválido'];
+        }
+
         ImpostoTipoProdutoDAO::cadastrarImposto($percentual, $tipoProduto);
         return [true, ''];
     }

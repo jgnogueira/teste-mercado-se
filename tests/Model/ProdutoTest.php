@@ -49,10 +49,10 @@ class ProdutoTest extends TestCase
         $this->assertEquals('Nome deve possuir entre 3 e 50 caracteres', $cadastrarProduto[1]);
     }
 
-    public function testCadastrarProdutoQuandoNomePossuiMaisQue200Caracteres() : void
+    public function testCadastrarProdutoQuandoNomePossuiMaisQue50Caracteres() : void
     {
         $this->criarDataTest();
-        $nome  = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+        $nome  = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
         $valor = 'R$ 10,00';
         $tipoProduto   = 1;
         $validarImagem = false;
