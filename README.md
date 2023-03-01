@@ -33,13 +33,13 @@ Para utilizar a aplicação, o usuário pode acessar a página de cadastro `http
 
 ### Usuário Administrador
 
-E-mail: **admin@email.com**
-Senha: admin1234
+- E-mail: **admin@email.com**
+- Senha: admin1234
 
 ### Usuário Padrão
 
-E-mail: **usuario@email.com**
-Senha: user1234
+- E-mail: **usuario@email.com**
+- Senha: user1234
 
 ---
 
