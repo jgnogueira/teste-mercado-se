@@ -114,9 +114,9 @@ function validarNome() {
         return false;
     }
 
-    if (nome.length > 100) {
+    if (nome.length > 50) {
         $('#nome').addClass('is-invalid');
-        $('#feedback-nome').html('Tipo deve ter no máximo 100 caracteres');
+        $('#feedback-nome').html('Tipo deve ter no máximo 50 caracteres');
         $('#icone-feedback-nome').addClass('icofont-exclamation-circle');
         $('#icone-feedback-nome').addClass('text-danger');
         return false;

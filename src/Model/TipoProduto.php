@@ -7,8 +7,8 @@ class TipoProduto
 {
     public static function cadastrarTipo(string $nome) : array
     {
-        if (!ValidacaoHelper::tamanho($nome, 3, 100)) {
-            return [false, 'Tipo deve possuir entre 3 e 100 caracteres'];
+        if (!ValidacaoHelper::tamanho($nome, 3, 50)) {
+            return [false, 'Tipo deve possuir entre 3 e 50 caracteres'];
         }
 
         TipoProdutoDAO::cadastrarTipo($nome);
