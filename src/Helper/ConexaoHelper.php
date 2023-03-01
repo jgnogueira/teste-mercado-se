@@ -2,7 +2,7 @@
 
 class ConexaoHelper
 {
-    private static bool $ambienteTeste  = true;
+    private static bool $ambienteTeste  = false;
     private static ?PDO $conexao        = null;
     private static string $host         = 'localhost';
     private static string $usuario      = 'postgres';
