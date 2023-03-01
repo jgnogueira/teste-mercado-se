@@ -1,8 +1,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Osahan Fashion - Bootstrap 4 E-Commerce Theme">
-<meta name="keywords" content="Osahan, fashion, Bootstrap4, shop, e-commerce, modern, flat style, responsive, online store, business, mobile, blog, bootstrap 4, html5, css3, jquery, js, gallery, slider, touch, creative, clean">
-<meta name="author" content="Askbootstrap">
+<meta name="description" content="Teste Mercado">
+<meta name="keywords" content="Mercado">
+<meta name="author" content="José Gabriel">
 <!-- Favicon Icon -->
 <link rel="apple-touch-icon" sizes="76x76" href="assets/images/apple-icon.png">
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
