@@ -12,7 +12,7 @@
 
 É esperado que tenho o PHP na versão 8, o Composer na versão 2.5 e o PostgreSQL na versão 15 instalados em um ambiente Windows.
 
-Após clonar o repositório, basta executar o seguinte comando no terminal:
+Após clonar o repositório, basta executar o seguinte comando no terminal da aplicação:
 - `composer install` para instalar as dependências da aplicação.
 
 Feito isso, será necessário criar duas bases de dados. A primeira chamada **mercado** e a segunda chamada **test_mercado**. Após criar a primeira base, será necessário restaurar o backup que se encontra no diretório **infra/SQL/backup.sql**. Após criar a segunda base, será necessário novamente restaurar um novo backup, porém dessa vez localizado no diretório **infra/SQL/test_backup.sql**.
