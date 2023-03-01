@@ -12,7 +12,11 @@ class ImpostoTipoProdutoTest extends TestCase
         parent::setUp();
 
         $database = ConexaoHelper::retornarConexao();
+        $database->prepare('DELETE FROM tbdados_vendas')->execute();
+        $database->prepare('DELETE FROM tbvendas')->execute();
+        $database->prepare('DELETE FROM tbcarrinho')->execute();
         $database->prepare('DELETE FROM tbprodutos')->execute();
+        $database->prepare('DELETE FROM tbusuarios')->execute();
         $database->prepare('DELETE FROM tbimposto_tipos_produto')->execute();
         $database->prepare('DELETE FROM tbtipos_produto')->execute();
     }
