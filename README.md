@@ -30,7 +30,7 @@ Após iniciar o servidor, a aplicação estará disponível no endereço `http:/
 
 ## Utilizando a aplicação
 
-Para utilizar a aplicação, é possível acessar a página de cadastro `http://localhost:8080/cadastro` para criar um novo perfil de acesso ou pode simplesmente utilizar as seguintes informações de usuários já existentes para realizar o login no sistema:
+Para utilizar a aplicação, é possível acessar a página de cadastro `http://localhost:8080/cadastro` para criar um novo perfil de acesso ou simplesmente utilizar as seguintes informações de usuários já existentes para realizar o login no sistema:
 
 **Observação:** para utilizar todas as funcionalidades disponíveis no sistema, é necessário fazer o login como usuário administrador.
 
